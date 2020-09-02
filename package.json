@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon helloWorld.js",
+    "start": "nodemon index.js",
     "test": "jest --watchAll",
     "eslint": "eslint"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-ejs": "^4.3.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
