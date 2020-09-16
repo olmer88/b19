@@ -2,6 +2,7 @@ const Koa = require('koa');
 const render = require('koa-ejs');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
+const knex = require('./knex');
 
 const app = new Koa();
 app.use(bodyParser());
@@ -41,11 +42,12 @@ app.use(async (ctx) => {
   console.log('ctx.request.body', ctx.request.body);
 
   login({ ...ctx.request.body, session });
-
+  const res = await knex.raw('Select 1 + 1');
   session.someVal = (session.someVal || 0) + 1;
   ctx.render('index', {
     counter: session.someVal,
     age: (userIdToUserMap[session.userId] || {}).age,
+    sqlRes: res,
   });
 });
 
