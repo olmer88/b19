@@ -6,14 +6,19 @@
 </head>
 <body>
 <h1>Notepad</h1>
-<h2>counter: <%= counter %></h2>
 <form method="post">
-  <label>Name: <input name="name"></label><br>
-  <label>Password: <input name="password" type="password"></label>
-  <input type="submit" value="Login">
+  <fieldset style="display: inline-block">
+    <label>Name: <input name="name"></label><br><br>
+    <label>Password: <input name="password" type="password"></label><br><br>
+    <input type="submit" value="Login" style="background-color: green">&nbsp;&nbsp;&nbsp;
+    <input type="submit"
+           value="register"
+           style="background-color: darkblue; color: white"
+           formaction="/register"
+    >
+  </fieldset>
 </form>
 <br>
 <h3>age: <%= age %></h3>
-<h3>sqlRes: <%- JSON.stringify(sqlRes, undefined, 2) %></h3>
 </body>
 </html>
