@@ -3,6 +3,7 @@ const render = require('koa-ejs');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
 const Router = require('@koa/router');
+const session = require('./midlewares/session');
 const indexController = require('./controller/indexController');
 const registerController = require('./controller/registerController');
 
@@ -10,9 +11,12 @@ const app = new Koa();
 const router = new Router();
 
 router
-  .post('/register', registerController)
+  .post('/register', registerController.register)
+  .get('/login', registerController.loginView)
+  .post('/login', registerController.login)
+  .get('/logout', registerController.logout)
   .get('/', indexController);
-app
+session(app)
   .use(bodyParser())
   .use(router.routes());
 

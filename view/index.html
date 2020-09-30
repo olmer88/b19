@@ -6,19 +6,14 @@
 </head>
 <body>
 <h1>Notepad</h1>
-<form method="post">
-  <fieldset style="display: inline-block">
-    <label>Name: <input name="name"></label><br><br>
-    <label>Password: <input name="password" type="password"></label><br><br>
-    <input type="submit" value="Login" style="background-color: green">&nbsp;&nbsp;&nbsp;
-    <input type="submit"
-           value="register"
-           style="background-color: darkblue; color: white"
-           formaction="/register"
-    >
-  </fieldset>
-</form>
+<% if(userName) {%>
+  <%= userName %> | <a href="/logout">logout</a>
+<% } else { %>
+  <a href="/login">Login</a>
+<% } %>
 <br>
-<h3>age: <%= age %></h3>
+
+
+
 </body>
 </html>
