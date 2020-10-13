@@ -1,4 +1,6 @@
 const crypto = require('crypto');
+const _ = require('lodash');
+const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
 const makeHash = (password) => crypto.createHash('md5').update(password).digest('hex');
@@ -20,6 +22,8 @@ const login = async (ctx) => {
   const [user] = await knex('users').where({ name, password });
   if (user) {
     ctx.session.user = user;
+    const token = jwt.sign(_.pick(user, ['userId', 'name']), 'super-secret');
+    ctx.cookies.set('jwt', token);
     ctx.redirect('/');
     return;
   }
