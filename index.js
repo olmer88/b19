@@ -14,6 +14,7 @@ const router = new Router();
 router
   .post('/register', registerController.register)
   .get('/login', registerController.loginView)
+  .get('/authenticate/facebook/', registerController.authenticateFacebook)
   .post('/login', registerController.login)
   .get('/logout', registerController.logout)
   .get('/', indexController);
