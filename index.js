@@ -7,6 +7,7 @@ const jwt = require('koa-jwt');
 const session = require('./midlewares/session');
 const indexController = require('./controller/indexController');
 const registerController = require('./controller/registerController');
+const listController = require('./controller/listController');
 
 const app = new Koa();
 const router = new Router();
@@ -16,7 +17,9 @@ router
   .get('/login', registerController.loginView)
   .post('/login', registerController.login)
   .get('/logout', registerController.logout)
+  .post('/add-list', listController.addListAction)
   .get('/', indexController);
+
 session(app)
   .use(bodyParser())
   .use(jwt({ secret: 'super-secret', passthrough: true, cookie: 'jwt' }))

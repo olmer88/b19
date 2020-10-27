@@ -7,13 +7,32 @@
 <body>
 <h1>Notepad</h1>
 <% if(userName) {%>
-  <%= userName %> | <a href="/logout">logout</a>
+<%= userName %> | <a href="/logout">logout</a>
 <% } else { %>
-  <a href="/login">Login</a>
+<a href="/login">Login Or Register</a>
 <% } %>
 <br>
+<br>
+<br>
 
-
+<% if(userName) { %>
+<form method="post" action="/add-list">
+  <label>
+    List Name: <input name="name" required>
+  </label>
+  <input type="submit" value="Create">
+</form>
+<br>
+<br>
+<% if(lists.length) { %>
+  Lists:
+  <ul>
+    <% lists.forEach(list => {%>
+    <li><%= list.name %></li>
+    <%})%>
+  </ul>
+  <% } %>
+<% } %>
 
 </body>
 </html>

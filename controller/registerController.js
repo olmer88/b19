@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
-const knex = require('../knex');
+const knex = require('../managers/knex');
 
 const makeHash = (password) => crypto.createHash('md5').update(password).digest('hex');
 
